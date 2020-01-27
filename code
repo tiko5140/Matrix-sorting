@@ -1,0 +1,53 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		Random rand = new Random();    
+		int[] all=new int[100];
+		int i,j;
+		int n=99;
+		int temp=1;
+		int[,] matrix=new int[10,10];
+		for(i=0;i<10;i++)//creating matrix 10x10 with random  nubers
+		{ 
+			for(j=0;j<10;j++)
+		    {
+			int numb=rand.Next(-100,1000); 
+		    matrix[i,j] = numb;
+		    all[(i*10+j)]=matrix[i,j];// making array this matrix
+		    }
+		}
+		for(int k=0;k<100;k++)// soriting
+		{
+			for(int l=0 ; l<100;l++)
+			{ if(all[k]<all[l])
+			  {
+				n=all[k];
+				all[k]=all[l];
+				all[l]=n;
+			  }
+			}				
+		}
+		for(i=0;i<10;i++)
+		{   matrix[9-i,i]=all[(i+1)*(i+1)-1];
+ 			for(j=0;j<i;j++)
+			{
+				matrix[9-i,j]=all[temp];
+				temp++;
+				matrix[9-j,i]=all[temp];
+				temp++;
+			}
+		}
+		for(i=0;i<10;i++)
+		    {
+			Console.WriteLine("\n");
+			for(j=0;j<10;j++)
+			{ Console.Write(matrix[i,j]+"     ");
+			}
+	        }
+		
+		
+	}
+}
